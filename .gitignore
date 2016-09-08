@@ -1,2 +1,6 @@
 n
 .*.swp
+sources/*
+!sources/*.cpp
+headers/*
+!headers/*.cpp
