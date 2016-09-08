@@ -7,13 +7,15 @@ const char Entity::COMMENT_CHARACTER = '#';
 const char Entity::DECIMAL_POINT = '.';
 
 const size_t Entity::BOOL_LITERALS_SIZE = 2;
+const size_t Entity::SEPARATORS_SIZE = 2;
+const size_t Entity::BRACKETS_SIZE = 6;
 const size_t Entity::DECLARATIONS_SIZE = 2;
 const size_t Entity::FLOW_CONTROLS_SIZE = 9;
-const size_t Entity::SEPARATORS_SIZE = 8;
 
 const std::string Entity::BOOL_LITERALS[] = {"true", "false"};
-const char Entity::SEPARATORS[] = {'(', ')', '{', '}', '[', ']', ';', ',' };
-const std::string Entity::DECLARATIONS[] = {"var", "fun"};
+const char Entity::SEPARATORS[] = {';', ','};
+const char Entity::BRACKETS[] = {'(', ')', '{', '}', '[', ']'};
+const std::string Entity::DECLARATIONS[] = {"var", "fun", "struct"};
 const std::string Entity::FLOW_CONTROLS[] = {"if", "else", "elif", "while", 
 		"do", "for", "return", "break", "continue"};
 
@@ -45,6 +47,17 @@ bool Entity::isSeparator(char c)
 	for (size_t i = 0;i < SEPARATORS_SIZE;i++) 
 	{
 		if (c == SEPARATORS[i]) 
+		{
+			return true;
+		}
+	}
+	return false;
+}
+bool Entity::isBracket(char c)
+{
+	for (size_t i = 0;i < BRACKETS_SIZE;i++) 
+	{
+		if (c == BRACKETS[i]) 
 		{
 			return true;
 		}
@@ -149,7 +162,8 @@ void Entity::process_by_character_type(const std::string &source,
 			endCur = true;
 			addCharToNext = false;
 		}
-		else if ((isSeparator(c)) || (c == '\'') || (c == '\"'))
+		else if ((isBracket(c)) || (isSeparator(c)) || (c == '\'') ||
+				(c == '\"'))
 		{
 			endCur = true;
 		}
@@ -212,8 +226,6 @@ void Entity::process_by_character_type(const std::string &source,
 
 		if ((addCharToNext) && (cur.empty()))
 		{
-
-			assert(not isspace(c));
 			if (c == '\"')
 			{
 				cur.type = Type::TEXT_LITERAL;
@@ -222,9 +234,17 @@ void Entity::process_by_character_type(const std::string &source,
 			{
 				cur.type = Type::CHAR_LITERAL;
 			}
-			else if (isSeparator(c))
+			else if ((isSeparator(c)) || (isBracket(c)))
 			{
-				cur.type = Type::SEPARATOR;
+				if (isSeparator(c))
+				{
+					cur.type = Type::SEPARATOR;
+				}
+				else
+				{
+					cur.type = Type::BRACKET;
+				}
+
 				cur.text.push_back(c);
 
 				entityList.push_back(cur);
@@ -283,7 +303,7 @@ void Entity::process_by_keywords(std::vector<Entity> &entityList)
 					next.type = Type::TYPE;
 				}
 			}
-			else if ((next.type == Type::SEPARATOR) && (next.text == "("))
+			else if ((next.type == Type::BRACKET) && (next.text == "("))
 			{
 				e.type = Type::FUNCTION;
 			}

@@ -31,20 +31,26 @@ public:
  */		
 		OPERATOR,
 /*
- *		(){}[];,
+ *		A semicolon (;) or a comma (,)
  */
 		SEPARATOR,
+/*
+ *		An opening or closing bracket
+ *		() [] {}
+ */
+		BRACKET,
+
 /*		
  *		Used when a variable is declared or used.
- *		Aplhanumeric and underscores, but doesn't start with a digit.
+ *		Alphanumeric and underscores, but doesn't start with a digit.
  */
 		VARIABLE,
 
 /*
  *		Used when a function is declared or called.
- *		Aplhanumeric and underscores, but doesn't start with a digit.
+ *		Alphanumeric and underscores, but doesn't start with a digit.
  *
- *		<FUNCTION_NAME> ([ARG_EXPRESS])
+ *		<FUNCTION_NAME> ([ARG_EXPRESSIONS])
  */
 		FUNCTION,
 /*
@@ -57,11 +63,14 @@ public:
  *		struct:
  *		- var <TYPE> 
  *		- fun <TYPE> <NAME> ([<PARAM_TYPE> <PARAM_NAME>, ...]) 
- *		- struct ???
+ *		- struct (probably not implemented at first, but reserved)
  */
 		DECLARATION,
 /*
- *		Used for flow control statemets: if, else, elif, while, for
+ *		Used for flow control statemets: 
+ *		if, else, elif, while, for, do, break, continue and return;
+ *		While not all of them will be parsed at first, they are reserved
+ *		as keywords.
  */
 		FLOW_CONTROL
 	};
@@ -81,16 +90,19 @@ private:
 
 	static const size_t BOOL_LITERALS_SIZE;
 	static const size_t SEPARATORS_SIZE;
+	static const size_t BRACKETS_SIZE;
 	static const size_t DECLARATIONS_SIZE;
 	static const size_t FLOW_CONTROLS_SIZE;
 
 	static const std::string BOOL_LITERALS[];
 	static const char SEPARATORS[];
+	static const char BRACKETS[];
 	static const std::string DECLARATIONS[];
 	static const std::string FLOW_CONTROLS[];
 
 	static bool isBoolLiteral(const std::string &s);
 	static bool isSeparator(char c);
+	static bool isBracket(char c);
 	static bool isDeclaration(const std::string &s);
 	static bool isFlowControl(const std::string &s);
 
