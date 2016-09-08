@@ -1,12 +1,14 @@
-#include<../headers/primitive_types.h>
-#include<../headers/stack_manager.h>
+#include "../headers/primitive_types.h"
+#include "../headers/stack_manager.h"
+
+#include<cstdint>
 
 int ProgramStack::add_variable(int type, Num size)
 {
 	if (size<0)
 	{
 		//throw exception
-		return;
+		return -1;
 	}
     int address=vars.size();
 	vars.push_back({type,size});
@@ -28,8 +30,8 @@ int ProgramStack::add_variable(int type, Num size)
 	else if (type>=NUMBER_OF_PRIMITIVE_TYPES)
 	{
 		vars[address].step=0;
-		std::vector<std::pair<int,int>>& members=structs[type-NUMBER_OF_PRIMITIVE_TYPES].members;
-		for (size_t i=0;i<members.size();++i)
+		std::vector<std::pair<int, Num>>& members=structs[type-NUMBER_OF_PRIMITIVE_TYPES].members;
+		for (std::size_t i=0;i<members.size();++i)
 		{
             vars[address].members.push_back(add_variable(members[i].first,members[i].second));
 		}
@@ -61,7 +63,7 @@ const Variable& ProgramStack::get_variable(int address) const
 }
 void ProgramStack::push_scope()
 {
-    scopePosition.push(make_pair(vars.size(),memory.size()));
+    scopePosition.push(std::make_pair(vars.size(),memory.size()));
 }
 void ProgramStack::pop_scope()
 {

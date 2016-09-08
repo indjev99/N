@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1473332091 source:d:\informatics\projects\n\sources\primitive_types.cpp
+	"../headers/primitive_types.h"
+
+1473347063 d:\informatics\projects\n\headers\primitive_types.h
+	<cstdint>
+

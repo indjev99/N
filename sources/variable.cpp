@@ -1,7 +1,7 @@
 #include<../headers/primitive_types.h>
 #include<../headers/variable.h>
 
-void Variable::set(Variable& newVariable, ProgramStack& programStack)
+void Variable::set(const Variable& newVariable, ProgramStack& programStack)
 {
     if (((type!=newVariable.type && (type>=NUMBER_OF_PRIMITIVE_TYPES ||
 			newVariable.type>=NUMBER_OF_PRIMITIVE_TYPES))) || size!=newVariable.size())

@@ -1,9 +1,9 @@
 #ifndef STACK_MANAGER_H_INCLUDED
 #define STACK_MANAGER_H_INCLUDED
 
-#include<../headers/primitive_types.h>
-#include<../headers/struct.h>
-#include<../headers/variable.h>
+#include "../headers/primitive_types.h"
+#include "../headers/struct.h"
+#include "../headers/variable.h"
 
 #include<stack>
 #include<vector>

@@ -1,9 +1,11 @@
 #ifndef PRIMITIVE_TYPES_H_INCLUDED
 #define PRIMITIVE_TYPES_H_INCLUDED
 
+#include<cstdint>
+
 extern const int NUMBER_OF_PRIMITIVE_TYPES;
 typedef void Void;
-typedef int64_t Num;
+typedef std::int64_t Num;
 typedef signed char Char;
 typedef double Real;
 typedef bool Bool;
