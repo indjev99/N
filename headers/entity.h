@@ -119,6 +119,8 @@ public:
 	Entity();
 	Entity(Type pType, const std::string &pText);
 
+	bool empty();
+
 
 	static std::vector<Entity> generate_from_text(const std::string &s);
 };

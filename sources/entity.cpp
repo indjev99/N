@@ -1,6 +1,10 @@
 #include "../headers/entity.h"
 
+#define DEBUG
+
 #include <cctype>
+#include <cassert>
+#include <iostream>
 #include <vector>
 
 const char Entity::COMMENT_CHARACTER = '#';
@@ -8,13 +12,14 @@ const char Entity::DECIMAL_POINT = '.';
 
 const size_t Entity::BOOL_LITERALS_SIZE = 2;
 const size_t Entity::DECLARATIONS_SIZE = 2;
-const size_t Entity::FLOW_CONTROLS_SIZE = 5;
+const size_t Entity::FLOW_CONTROLS_SIZE = 9;
 const size_t Entity::SEPARATORS_SIZE = 8;
 
 const std::string Entity::BOOL_LITERALS[] = {"true", "false"};
 const char Entity::SEPARATORS[] = {'(', ')', '{', '}', '[', ']', ';', ',' };
 const std::string Entity::DECLARATIONS[] = {"var", "fun"};
-const std::string Entity::FLOW_CONTROLS[] = {"if", "else", "elif", "while", "for"};
+const std::string Entity::FLOW_CONTROLS[] = {"if", "else", "elif", "while", 
+		"do", "for", "return", "break", "continue"};
 
 Entity::Entity() 
 {
@@ -24,6 +29,11 @@ Entity::Entity()
 
 Entity::Entity(Type pType, const std::string &pText): type(pType), 
 		text(pText) {}
+
+bool Entity::empty()
+{
+	return ((text.empty()) && (type == Type::VARIABLE));
+}
 
 bool Entity::isBoolLiteral(const std::string &s)
 { 
@@ -96,7 +106,7 @@ void Entity::process_by_character_type(const std::string &source,
 
 	for (char c : source) 
 	{
-		if (!isprint(c))
+		if ((iscntrl(c)) && (!isspace(c)))
 		{
 			continue;
 		}
@@ -143,7 +153,7 @@ void Entity::process_by_character_type(const std::string &source,
 			endCur = true;
 			addCharToNext = false;
 		}
-		else if (isSeparator(c)) 
+		else if ((isSeparator(c)) || (c == '\'') || (c == '\"'))
 		{
 			endCur = true;
 		}
@@ -202,15 +212,16 @@ void Entity::process_by_character_type(const std::string &source,
 			}
 		}
 
-		if (endCur)
+		if ((endCur) && (not cur.empty()))
 		{
 			entityList.push_back(cur);
 			cur = Entity();
 		}
 
-		if ((endCur) && (addCharToNext))
+		if ((addCharToNext) && (cur.empty()))
 		{
 
+			assert(not isspace(c));
 			if (c == '\"')
 			{
 				cur.type = Type::TEXT_LITERAL;
@@ -243,11 +254,55 @@ void Entity::process_by_character_type(const std::string &source,
 				cur.text.push_back(c);
 			}
 		}
+		std::cout << "endCur " << endCur << " addToNext " << addCharToNext << "\n";
+		std::cout << c << ": `" << cur.type << "` "<< cur.text << "\n";
 		prevCh = c;
+	}
+	if (not cur.empty())
+	{
+		entityList.push_back(cur);
 	}
 }
 void Entity::process_by_keywords(std::vector<Entity> &entityList)
 {
+	for (size_t i = 0;i < entityList.size();i++)
+	{
+		Entity &e = entityList[i];
+		if (e.type == Type::VARIABLE)
+		{
+			if (isFlowControl(e.text))
+			{
+				e.type = Type::FLOW_CONTROL;
+			}
+			else if (isDeclaration(e.text))
+			{
+				e.type = Type::DECLARATION;
+			}
+			else if (isBoolLiteral(e.text))
+			{
+				e.type = Type::BOOL_LITERAL;
+			}
+		}
+		if (i + 1 < entityList.size())
+		{
+			Entity &next = entityList[i + 1];
+			if (e.type == Type::DECLARATION)
+			{
+				if (next.type == Type::VARIABLE)
+				{
+					next.type = Type::TYPE;
+				}
+				else
+				{
+					//throws
+				}
+			}
+			else if ((next.type == Type::SEPARATOR) && (next.text == "("))
+			{
+				e.type = Type::FUNCTION;
+			}
+		}
+	}
 }
 
 std::vector<Entity> Entity::generate_from_text(const std::string& source) 
