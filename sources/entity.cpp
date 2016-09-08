@@ -1,10 +1,6 @@
 #include "../headers/entity.h"
 
-#define DEBUG
-
 #include <cctype>
-#include <cassert>
-#include <iostream>
 #include <vector>
 
 const char Entity::COMMENT_CHARACTER = '#';
@@ -179,10 +175,6 @@ void Entity::process_by_character_type(const std::string &source,
 			{
 				cur.text.push_back(c);
 			}
-			else if (c == DECIMAL_POINT) 
-			{
-				//throw
-			}
 			else 
 			{
 				endCur = true;
@@ -254,8 +246,6 @@ void Entity::process_by_character_type(const std::string &source,
 				cur.text.push_back(c);
 			}
 		}
-		std::cout << "endCur " << endCur << " addToNext " << addCharToNext << "\n";
-		std::cout << c << ": `" << cur.type << "` "<< cur.text << "\n";
 		prevCh = c;
 	}
 	if (not cur.empty())
@@ -291,10 +281,6 @@ void Entity::process_by_keywords(std::vector<Entity> &entityList)
 				if (next.type == Type::VARIABLE)
 				{
 					next.type = Type::TYPE;
-				}
-				else
-				{
-					//throws
 				}
 			}
 			else if ((next.type == Type::SEPARATOR) && (next.text == "("))
