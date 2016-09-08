@@ -24,11 +24,10 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="headers/primitive_types.h" />
-		<Unit filename="headers/stack_manager.h" />
+		<Unit filename="headers/program_stack.h" />
 		<Unit filename="headers/struct.h" />
-		<Unit filename="headers/variable.h" />
 		<Unit filename="sources/primitive_types.cpp" />
-		<Unit filename="sources/stack_manager.cpp" />
+		<Unit filename="sources/program_stack.cpp" />
 		<Unit filename="sources/variable.cpp" />
 		<Extensions>
 			<code_completion />

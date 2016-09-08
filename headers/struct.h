@@ -12,4 +12,4 @@ public:
 };
 
 
-#endif // STRUCT_MANAGER_H_INCLUDED
+#endif // STRUCT_H_INCLUDED
