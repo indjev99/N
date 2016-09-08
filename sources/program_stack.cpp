@@ -33,6 +33,7 @@ int ProgramStack::add_variable(int type, Num size)
 		std::vector<std::pair<int, Num>>& members=structs[type-NUMBER_OF_PRIMITIVE_TYPES].members;
 		for (std::size_t i=0;i<members.size();++i)
 		{
+			//error somewhere around here
             vars[address].members.push_back(add_variable(members[i].first,members[i].second));
 		}
 	}
@@ -58,6 +59,7 @@ int ProgramStack::add_num(Num value)
 	MemoryUnit newMemUnit;
 	newMemUnit.numField=value;
 	set_value(address,std::make_pair(NUM_CODE,newMemUnit));
+	return address;
 }
 int ProgramStack::add_char(Char value)
 {
@@ -65,6 +67,7 @@ int ProgramStack::add_char(Char value)
 	MemoryUnit newMemUnit;
 	newMemUnit.charField=value;
 	set_value(address,std::make_pair(CHAR_CODE,newMemUnit));
+	return address;
 }
 int ProgramStack::add_real(Real value)
 {
@@ -72,6 +75,7 @@ int ProgramStack::add_real(Real value)
 	MemoryUnit newMemUnit;
 	newMemUnit.realField=value;
 	set_value(address,std::make_pair(REAL_CODE,newMemUnit));
+	return address;
 }
 int ProgramStack::add_bool(Bool value)
 {
@@ -79,6 +83,7 @@ int ProgramStack::add_bool(Bool value)
 	MemoryUnit newMemUnit;
 	newMemUnit.boolField=value;
 	set_value(address,std::make_pair(BOOL_CODE,newMemUnit));
+	return address;
 }
 int ProgramStack::add_text(std::string value)
 {
@@ -89,6 +94,7 @@ int ProgramStack::add_text(std::string value)
 		newMemUnit.charField=value[i];
 		set_value(get_at_index(address,i),std::make_pair(CHAR_CODE,newMemUnit));
 	}
+	return address;
 }
 void ProgramStack::copy(int address1, int address2)
 {
