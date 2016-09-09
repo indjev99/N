@@ -120,13 +120,11 @@ void Entity::process_by_character_type(const std::string &source,
 			continue;
 		}
 
-		if (c == COMMENT_CHARACTER) 
-		{
-			processingComment = !processingComment;
-			continue;
-		}
 		if (processingComment)
 		{
+			if (c == COMMENT_CHARACTER) {
+				processingComment = !processingComment;
+			}
 			continue;
 		}
 
@@ -156,6 +154,11 @@ void Entity::process_by_character_type(const std::string &source,
 			{
 				cur.text.push_back(c);
 			}
+		}
+		else if (c == COMMENT_CHARACTER) 
+		{
+			processingComment = !processingComment;
+			continue;
 		}
 		else if (isspace(c))
 		{
