@@ -195,7 +195,7 @@ int ProgramStack::pop_scope(int address)
 	declaredAtScope.pop();
 	for (size_t i=0;i<declared.size();++i)
 	{
-        scopeAddress[i].pop();
+        scopeAddress[declared[i]].pop();
 	}
 	vars.resize(scopePosition.top().first);
 	memory.resize(scopePosition.top().second);

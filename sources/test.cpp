@@ -20,14 +20,14 @@ std::string read_stdin()
 
 int main()
 {
-	std::string source = read_stdin();
+	/*std::string source = read_stdin();
 	std::cout << source << "\n";
 	std::vector<Entity> processed = Entity::generate_from_text(source);
 
 	for (Entity e : processed)
 	{
 		std::cout << (unsigned int) e.type << " " << e.text << "\n";
-	}
+	}*/
 
 	std::string s;
 	int a,b,c;

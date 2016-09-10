@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1473496644 source:d:\informatics\projects\n\sources\primitive_types.cpp
+1473509184 source:d:\informatics\projects\n\sources\primitive_types.cpp
 	"../headers/primitive_types.h"
 
-1473496644 d:\informatics\projects\n\headers\primitive_types.h
+1473509184 d:\informatics\projects\n\headers\primitive_types.h
 	<cstdint>
 
 1473356014 source:d:\informatics\projects\n\sources\stack_manager.cpp
@@ -18,41 +18,43 @@
 	<string>
 	<vector>
 
-1473496644 d:\informatics\projects\n\headers\struct.h
+1473509184 d:\informatics\projects\n\headers\struct.h
 	"../headers/primitive_types.h"
 	<vector>
 
 1473355370 d:\informatics\projects\n\headers\variable.h
 
-1473496644 source:d:\informatics\projects\n\sources\program_stack.cpp
+1473510543 source:d:\informatics\projects\n\sources\program_stack.cpp
 	"../headers/primitive_types.h"
 	"../headers/program_stack.h"
 	<cstdint>
 
-1473496644 d:\informatics\projects\n\headers\program_stack.h
+1473509184 d:\informatics\projects\n\headers\program_stack.h
 	"../headers/primitive_types.h"
 	"../headers/struct.h"
 	<stack>
 	<string>
 	<vector>
 
-1473496644 source:d:\informatics\projects\n\sources\variable.cpp
+1473509184 source:d:\informatics\projects\n\sources\variable.cpp
 	"../headers/primitive_types.h"
 	"../headers/program_stack.h"
 
-1473493993 source:d:\informatics\projects\n\sources\test.cpp
+1473509355 source:d:\informatics\projects\n\sources\test.cpp
+	"../headers/entity.h"
 	"../headers/program_stack.h"
 	"../headers/operations.h"
 	<iostream>
+	<string>
 
-1473496644 source:d:\informatics\projects\n\sources\operations.cpp
+1473509184 source:d:\informatics\projects\n\sources\operations.cpp
 	"../headers/operations.h"
 
-1473496644 d:\informatics\projects\n\headers\operations.h
+1473509184 d:\informatics\projects\n\headers\operations.h
 	"../headers/primitive_types.h"
 	"../headers/program_stack.h"
 
-1473496644 source:d:\informatics\projects\n\sources\entity.cpp
+1473509184 source:d:\informatics\projects\n\sources\entity.cpp
 	"../headers/entity.h"
 	<cctype>
 	<vector>
@@ -61,7 +63,7 @@
 	<string>
 	<vector>
 
-1473497025 source:d:\informatics\projects\n\sources\main.cpp
+1473509184 source:d:\informatics\projects\n\sources\main.cpp
 	<iostream>
 	<string>
 
