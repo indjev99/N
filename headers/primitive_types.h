@@ -9,6 +9,7 @@ typedef std::int64_t Num;
 typedef signed char Char;
 typedef double Real;
 typedef bool Bool;
+extern const int REF_CODE;
 extern const int VOID_CODE;
 extern const int NUM_CODE;
 extern const int CHAR_CODE;

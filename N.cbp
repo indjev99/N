@@ -28,6 +28,7 @@
 		<Unit filename="headers/struct.h" />
 		<Unit filename="sources/primitive_types.cpp" />
 		<Unit filename="sources/program_stack.cpp" />
+		<Unit filename="sources/test.cpp" />
 		<Unit filename="sources/variable.cpp" />
 		<Extensions>
 			<code_completion />

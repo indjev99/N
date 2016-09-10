@@ -9,6 +9,8 @@ class Struct
 {
 public:
     std::vector<std::pair<int, Num>> members;
+    int size;
+    int primitiveSize;
 };
 
 

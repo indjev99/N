@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1473371387 source:d:\informatics\projects\n\sources\primitive_types.cpp
+1473411008 source:d:\informatics\projects\n\sources\primitive_types.cpp
 	"../headers/primitive_types.h"
 
-1473371387 d:\informatics\projects\n\headers\primitive_types.h
+1473410807 d:\informatics\projects\n\headers\primitive_types.h
 	<cstdint>
 
 1473356014 source:d:\informatics\projects\n\sources\stack_manager.cpp
@@ -18,29 +18,37 @@
 	<string>
 	<vector>
 
-1473371387 d:\informatics\projects\n\headers\struct.h
+1473487747 d:\informatics\projects\n\headers\struct.h
 	"../headers/primitive_types.h"
 	<vector>
 
 1473355370 d:\informatics\projects\n\headers\variable.h
 
-1473371387 source:d:\informatics\projects\n\sources\program_stack.cpp
+1473494908 source:d:\informatics\projects\n\sources\program_stack.cpp
 	"../headers/primitive_types.h"
 	"../headers/program_stack.h"
 	<cstdint>
 
-1473371387 d:\informatics\projects\n\headers\program_stack.h
+1473493363 d:\informatics\projects\n\headers\program_stack.h
 	"../headers/primitive_types.h"
 	"../headers/struct.h"
 	<stack>
 	<string>
 	<vector>
 
-1473371387 source:d:\informatics\projects\n\sources\variable.cpp
+1473489811 source:d:\informatics\projects\n\sources\variable.cpp
 	"../headers/primitive_types.h"
 	"../headers/program_stack.h"
 
-1473372620 source:d:\informatics\projects\n\sources\test.cpp
+1473493993 source:d:\informatics\projects\n\sources\test.cpp
 	"../headers/program_stack.h"
+	"../headers/operations.h"
 	<iostream>
+
+1473493633 source:d:\informatics\projects\n\sources\operations.cpp
+	"../headers/operations.h"
+
+1473493344 d:\informatics\projects\n\headers\operations.h
+	"../headers/primitive_types.h"
+	"../headers/program_stack.h"
 

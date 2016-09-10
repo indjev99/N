@@ -2,6 +2,7 @@
 
 const int NUMBER_OF_PRIMITIVE_TYPES=5;
 
+const int REF_CODE=-1;
 const int VOID_CODE=0;
 const int NUM_CODE=1;
 const int CHAR_CODE=2;
