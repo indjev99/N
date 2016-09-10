@@ -1,4 +1,4 @@
-#include "../headers/entity.h"
+/*#include "../headers/entity.h"
 
 #include <iostream>
 #include <string>
@@ -14,14 +14,14 @@ std::string read_stdin()
 	return ans;
 }
 
-int main() 
+int main()
 {
 	std::string source = read_stdin();
 	std::cout << source << "\n";
 	std::vector<Entity> processed = Entity::generate_from_text(source);
 
-	for (Entity e : processed) 
+	for (Entity e : processed)
 	{
 		std::cout << (unsigned int) e.type << " " << e.text << "\n";
 	}
-}
+}*/
